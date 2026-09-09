@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Weekly Flyers Scraper (FlyerScout AI) | André Verzoto</title>
+  <meta name="description" content="Autonomous AI pipeline extracting supermarket promo flyers from Instagram using Google Gemini Vision, SQLite deduplication, Telegram bot alerts, and Excel reporting." />
+  <meta name="author" content="André Verzoto" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <ul class="nav-links">
+        <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+        <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
+        <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+        <li>
+          <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme" title="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <article style="padding: 30px 0 60px;">
+      
+      <!-- Breadcrumb -->
+      <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
+        <a href="../index.html" style="color: inherit; text-decoration: none;">Home</a> &gt; 
+        <a href="../index.html#projects" style="color: inherit; text-decoration: none;">Projects</a> &gt; 
+        <span style="color: var(--text-main); font-weight: 500;">Weekly Flyers Scraper</span>
+      </div>
+
+      <!-- Title & Headline -->
+      <h1 style="font-size: 2.2rem; font-weight: 700; line-height: 1.25; margin-bottom: 12px; color: var(--text-main);">
+        Weekly Supermarket Flyers Scraper (FlyerScout AI)
+      </h1>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 24px;">
+        <span class="tag-badge" style="font-size: 0.82rem; padding: 4px 10px;">
+          <i class="fas fa-tags"></i> Multimodal AI & Market Intelligence
+        </span>
+        <span style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">
+          Python &bull; Gemini 1.5 Flash &bull; Apify &bull; FastAPI &bull; Telegram Bot &bull; SQLite
+        </span>
+      </div>
+
+      <!-- Project Metadata Grid -->
+      <div class="skills-container" style="margin-bottom: 30px;">
+        <div class="skill-box">
+          <div class="skill-box-title"><i class="fas fa-user-tag"></i> Role</div>
+          <div class="skill-box-desc">AI &amp; Automation Engineer</div>
+        </div>
+        <div class="skill-box">
+          <div class="skill-box-title"><i class="fas fa-code"></i> Technologies</div>
+          <div class="skill-box-desc">Python, Google Gemini Flash, Apify, FastAPI, Telegram Bot API, SQLite, GitHub Actions, OpenPyXL</div>
+        </div>
+        <div class="skill-box">
+          <div class="skill-box-title"><i class="fab fa-github"></i> Repository</div>
+          <div class="skill-box-desc">
+            <a href="https://github.com/AVerz26/Weekly-Flyers-Scraper" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">github.com/AVerz26/Weekly-Flyers-Scraper</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Project Purpose & Overview -->
+      <section class="section">
+        <h2 class="section-title"><i class="fas fa-bullseye"></i> Project Purpose &amp; Overview</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;">
+          Supermarket promotional flyers and inserts (encartes) are traditionally published as image carousels on social media platforms like Instagram. Manually reviewing these flyers to track grocery price trends, compare competitor deals, or compile purchasing reports is tedious, error-prone, and time-consuming.
+        </p>
+        <p style="color: var(--text-secondary); line-height: 1.7;">
+          <strong>FlyerScout AI</strong> converts this manual process into a 100% autonomous pipeline. It crawls target supermarket Instagram accounts, leverages multimodal Vision AI (Google Gemini Flash / GPT-4o) to extract product names and promotional prices directly from images, categorizes items, deduplicates deals with SHA-256 hashes in SQLite, and pushes daily digests and multi-tab Excel workbooks straight to Telegram.
+        </p>
+      </section>
+
+      <!-- Section: Key Pipeline Architecture -->
+      <section class="section">
+        <h2 class="section-title"><i class="fas fa-network-wired"></i> Architecture &amp; Key Features</h2>
+        <ul class="project-bullets" style="margin-left: 24px; color: var(--text-secondary); line-height: 1.7;">
+          <li><strong>Autonomous Social Scraping:</strong> Extracts new promotional posts and multi-image carousels from supermarket Instagram profiles using headless Apify actors with custom date filtering.</li>
+          <li><strong>Multimodal Vision AI Extraction:</strong> Powered by Google Gemini 1.5 Flash (and OpenAI GPT-4o) for ultra-fast, highly accurate optical comprehension of complex flyer layouts, prices, brands, and units.</li>
+          <li><strong>Smart Categorization &amp; Normalization:</strong> Automatically maps raw extracted items into categories (Meats, Beverages, Grocery, Dairy, Produce, Cleaning, Hygiene, General Merchandise).</li>
+          <li><strong>Deduplicated SQLite Storage:</strong> Generates unique SHA-256 hashes (<span style="font-family: var(--font-mono); font-size: 0.85em;">supermarket + item + price + date</span>) to prevent repeated deals and maintain an indexed historical database (<span style="font-family: var(--font-mono); font-size: 0.85em;">data/offers.db</span>).</li>
+          <li><strong>Telegram Bot Notification Engine:</strong> Formats daily deal digests and automatically delivers structured Excel spreadsheets (<span style="font-family: var(--font-mono); font-size: 0.85em;">.xlsx</span> with tabs per supermarket and category) directly to private chats or broadcast channels.</li>
+          <li><strong>100% Cloud Automation (GitHub Actions):</strong> Runs scheduled daily cron workflows in the cloud at 07:00 AM without requiring local server uptime, auto-committing updated database snapshots back to the repository.</li>
+          <li><strong>Interactive Web Dashboard:</strong> Built with FastAPI + Vanilla CSS for live real-time pipeline monitoring, deal search, profile management, and manual execution.</li>
+        </ul>
+      </section>
+
+      <!-- Section: Core Stack & Highlights -->
+      <section class="section">
+        <h2 class="section-title"><i class="fas fa-layer-group"></i> Technical Highlights</h2>
+        <div class="skills-container">
+          <div class="skill-box">
+            <div class="skill-box-title"><i class="fas fa-robot"></i> Vision AI Integration</div>
+            <div class="skill-box-desc">Zero-shot structured JSON extraction from promotional artwork with high token efficiency.</div>
+          </div>
+          <div class="skill-box">
+            <div class="skill-box-title"><i class="fas fa-paper-plane"></i> Automated Alerts</div>
+            <div class="skill-box-desc">Instant delivery of daily summaries and formatted Excel files via Telegram Bot API.</div>
+          </div>
+          <div class="skill-box">
+            <div class="skill-box-title"><i class="fas fa-cloud"></i> Serverless Cron</div>
+            <div class="skill-box-desc">Configured via GitHub Actions CI/CD workflows for hands-free daily cloud execution.</div>
+          </div>
+          <div class="skill-box">
+            <div class="skill-box-title"><i class="fas fa-shield-alt"></i> Robust Deduplication</div>
+            <div class="skill-box-desc">SHA-256 fingerprinting ensures database integrity and prevents alert spam.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation Footer Back -->
+      <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+        <a href="fuel-price-dashboard.html" class="unit-link" style="padding: 8px 16px;">
+          <i class="fas fa-arrow-left"></i> Previous: Fuel Price Tracker
+        </a>
+        <a href="../index.html#projects" class="unit-link" style="padding: 8px 16px;">
+          All Projects <i class="fas fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div>&copy; 2026 André Verzoto. All rights reserved.</div>
+      <div><a href="../index.html" style="color: inherit; text-decoration: underline;">Return to Main Portfolio</a></div>
+    </footer>
+
+  </div>
+
+  <div id="toast" class="toast-msg">Email copied</div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

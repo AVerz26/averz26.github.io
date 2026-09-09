@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Daily Fuel Price Tracking Dashboard | André Verzoto</title>
-  <meta name="description" content="Automated daily web scraping ETL pipeline and Grafana analytics dashboard for fuel pricing." />
+  <title>Daily Fuel Price Tracker | André Verzoto</title>
+  <meta name="description" content="Automated SEFAZ-MT ETL pipeline and analytics dashboard for daily fuel price intelligence across 17+ municipalities." />
   <meta name="author" content="André Verzoto" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,7 +20,6 @@
   <!-- Top Navigation Bar -->
   <nav class="navbar">
     <div class="container nav-inner">
-
       <ul class="nav-links">
         <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
         <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
@@ -41,21 +40,21 @@
       <!-- Breadcrumb -->
       <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
         <a href="../index.html" style="color: inherit; text-decoration: none;">Home</a> &gt; 
-        <a href="../index.html#experience" style="color: inherit; text-decoration: none;">Projects</a> &gt; 
+        <a href="../index.html#projects" style="color: inherit; text-decoration: none;">Projects</a> &gt; 
         <span style="color: var(--text-main); font-weight: 500;">Fuel Price Tracker</span>
       </div>
 
       <!-- Title & Headline -->
       <h1 style="font-size: 2.2rem; font-weight: 700; line-height: 1.25; margin-bottom: 12px; color: var(--text-main);">
-        Daily Fuel Price Tracking Dashboard
+        Daily Fuel Price Tracker
       </h1>
 
       <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 24px;">
         <span class="tag-badge" style="font-size: 0.82rem; padding: 4px 10px;">
-          <i class="fas fa-gas-pump"></i> Automated Market Intelligence & ETL
+          <i class="fas fa-gas-pump"></i> Automated Market Intelligence &amp; ETL
         </span>
         <span style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">
-          Python &bull; Selenium &bull; MySQL &bull; Grafana
+          Python &bull; Playwright / Requests &bull; Firebase Firestore &bull; MySQL &bull; GitHub Actions
         </span>
       </div>
 
@@ -63,54 +62,79 @@
       <div class="skills-container" style="margin-bottom: 30px;">
         <div class="skill-box">
           <div class="skill-box-title"><i class="fas fa-user-tag"></i> Role</div>
-          <div class="skill-box-desc">Data Engineer & Dashboard Specialist</div>
+          <div class="skill-box-desc">Data Engineer &amp; Automation Developer</div>
         </div>
         <div class="skill-box">
           <div class="skill-box-title"><i class="fas fa-code"></i> Technologies</div>
-          <div class="skill-box-desc">Python (Requests, Selenium), MySQL, Grafana, Cron/Automation</div>
+          <div class="skill-box-desc">Python (Playwright, Requests, Pandas), Firebase Firestore, MySQL, SEFAZ-MT API, GitHub Actions</div>
         </div>
         <div class="skill-box">
           <div class="skill-box-title"><i class="fab fa-github"></i> Repository</div>
           <div class="skill-box-desc">
-            <a href="https://github.com/AVerz26" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration: underline;">github.com/AVerz26</a>
+            <a href="https://github.com/AVerz26/Fuel-Prices-Tracker" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">github.com/AVerz26/Fuel-Prices-Tracker</a>
           </div>
         </div>
       </div>
 
       <!-- Primary Screenshot -->
       <div class="project-img-container" style="margin-bottom: 36px;">
-        <img src="https://raw.githubusercontent.com/AVerz26/AVerz26/main/sample4.png" alt="Grafana Fuel Price Dashboard" class="project-img-preview" />
+        <img src="https://raw.githubusercontent.com/AVerz26/Fuel-Prices-Tracker/main/screenshot_gasolina.png" alt="Fuel Price Tracker Dashboard" class="project-img-preview" onerror="this.src='https://raw.githubusercontent.com/AVerz26/AVerz26/main/sample4.png'" />
       </div>
 
       <!-- Section: Challenge & Objective -->
       <section class="section">
-        <h2 class="section-title"><i class="fas fa-chart-area"></i> Project Purpose & Overview</h2>
+        <h2 class="section-title"><i class="fas fa-chart-area"></i> Project Purpose &amp; Overview</h2>
         <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;">
-          Fuel prices across municipal and regional distribution stations experience frequent daily volatility. For fleet managers and purchasing analysts, tracking these price shifts manually is unfeasible.
+          Fuel prices across municipal and regional distribution networks experience frequent daily volatility. For fleet managers, logistics operators, and purchasing analysts, tracking these price shifts across dozens of cities manually is unfeasible.
         </p>
         <p style="color: var(--text-secondary); line-height: 1.7;">
-          This system was built to provide automated daily pricing intelligence by autonomously crawling distributor websites, parsing historical price quotes, and delivering instant trend insights via Grafana.
+          This system was built to provide automated daily pricing intelligence by autonomously querying official tax invoice streams (SEFAZ-MT Menor Preço), parsing historical price quotes, filtering non-station noise and statistical outliers, and storing enriched time-series data for analytics and decision-making.
         </p>
       </section>
 
       <!-- Section: System Architecture -->
       <section class="section">
-        <h2 class="section-title"><i class="fas fa-database"></i> Architecture & Pipeline</h2>
+        <h2 class="section-title"><i class="fas fa-database"></i> Architecture &amp; Pipeline</h2>
         <ul class="project-bullets" style="margin-left: 24px; color: var(--text-secondary); line-height: 1.7;">
-          <li><strong>Scheduled Extraction Engine:</strong> Daily automated crawlers triggered via Python, utilizing headless Selenium and optimized HTTP Requests.</li>
-          <li><strong>Data Validation & Cleansing:</strong> Sanitizes station names, tax codes, and currency formatting while handling dynamic web elements and pagination.</li>
-          <li><strong>Relational MySQL Storage:</strong> Structured schema supporting indexed time-series queries, price delta calculations, and geographic segmentation.</li>
-          <li><strong>Interactive Grafana Dashboards:</strong> Rich time-series graphs, moving average trendlines, volatility thresholds, and price anomaly heatmaps.</li>
+          <li><strong>Multi-City Scheduled Extraction:</strong> Automated crawlers querying price data across 17+ major municipalities (Cuiabá, Várzea Grande, Rondonópolis, Sinop, Sorriso, Cáceres, Tangará da Serra, etc.).</li>
+          <li><strong>Multi-Fuel Classification:</strong> Categorizes and tracks Ethanol (Etanol Comum/Aditivado), Gasoline (Gasolina Comum/Aditivada), and Diesel (S10/S500).</li>
+          <li><strong>Smart Entity Validation &amp; Outlier Rejection:</strong> Regex pattern matching filters out non-fuel businesses (auto parts, repair shops, bakeries) and enforces statistical sanity checks to eliminate pricing anomalies.</li>
+          <li><strong>Composite Key Deduplication:</strong> Generates unique identifiers based on <span style="font-family: var(--font-mono); font-size: 0.85em;">timestamp + CNPJ + product code</span> to ensure idempotent ingestion.</li>
+          <li><strong>Cloud Database Persistence:</strong> Real-time streaming into Firebase Firestore and structured relational MySQL schema for high-throughput time-series analysis.</li>
+          <li><strong>Automated CI/CD Workflows:</strong> Runs hands-free via GitHub Actions workflows and includes continuous local loop scheduling modes.</li>
         </ul>
+      </section>
+
+      <!-- Section: Technical Highlights -->
+      <section class="section">
+        <h2 class="section-title"><i class="fas fa-layer-group"></i> Technical Highlights</h2>
+        <div class="skills-container">
+          <div class="skill-box">
+            <div class="skill-box-title"><i class="fas fa-bolt"></i> Resilient ETL</div>
+            <div class="skill-box-desc">Handles rate limits, dynamic JSON endpoints, and date format conversions with zero loss.</div>
+          </div>
+          <div class="skill-box">
+            <div class="skill-box-title"><i class="fas fa-filter"></i> Data Sanitization</div>
+            <div class="skill-box-desc">Strict regex whitelisting/blacklisting isolates genuine gas station entries from noise.</div>
+          </div>
+          <div class="skill-box">
+            <div class="skill-box-title"><i class="fas fa-database"></i> Hybrid Persistence</div>
+            <div class="skill-box-desc">Firestore cloud document storage alongside structured SQL schema.</div>
+          </div>
+          <div class="skill-box">
+            <div class="skill-box-title"><i class="fas fa-clock"></i> Scheduled Pipeline</div>
+            <div class="skill-box-desc">Autonomous scheduled runs via GitHub Actions and local cron daemon.</div>
+          </div>
+        </div>
       </section>
 
       <!-- Navigation Footer Back -->
       <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
-        <a href="streamlit-leads-finder.html" class="unit-link" style="padding: 8px 16px;">
-          <i class="fas fa-arrow-left"></i> Previous Project
+        <a href="weekly-flyer-scraper.html" class="unit-link" style="padding: 8px 16px;">
+          <i class="fas fa-arrow-left"></i> Next: Weekly Flyers Scraper
         </a>
-        <a href="streamlit-zip-code-radius.html" class="unit-link" style="padding: 8px 16px;">
-          Next: Zip Code App <i class="fas fa-arrow-right"></i>
+        <a href="../index.html#projects" class="unit-link" style="padding: 8px 16px;">
+          All Projects <i class="fas fa-arrow-up-right-from-square"></i>
         </a>
       </div>
 
